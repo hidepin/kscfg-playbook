@@ -1,0 +1,4 @@
+---
+# file: roles/kscfg/handlers/main.yml
+- name: httpd restart
+  service: name=httpd state=restarted

@@ -1,0 +1,44 @@
+---
+# file: roles/kscfg/main.yml
+- name: httpd packages install
+  yum: name=httpd state=present
+
+- name: setting httpd ServerName
+  lineinfile:
+    name=/etc/httpd/conf/httpd.conf
+    regexp="^ServerName "
+    insertafter="^#ServerName "
+    line="ServerName {{ansible_fqdn}}"
+    backup=yes
+  register: is_httpd_setting
+  notify: httpd restart
+
+- name: backup httpd.conf
+  fetch:
+    src={{item}}
+    dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+  with_items:
+    - "{{is_httpd_setting.backup}}"
+    - /etc/httpd/conf/httpd.conf
+  when: is_httpd_setting|changed
+
+- name: delete httpd.conf backup
+  file: path={{is_httpd_setting.backup}} state=absent
+  when: is_httpd_setting|changed
+
+- name: httpd service enabled
+  service: name=httpd state=started enabled=yes
+
+- name: create kscfg dir
+  file: path=/var/www/html/kscfg state=directory owner=root group=root mode=0755
+
+- name: kscfg deploy
+  template:
+    src=centos7-ks.cfg.j2
+    dest="/var/www/html/kscfg/{{item.kscfg_hostname|regex_replace('\..*$', '')}}.cfg"
+    owner=root
+    group=root
+    mode=0644
+    backup=yes
+  with_items: kscfg
+  notify: httpd restart

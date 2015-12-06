@@ -1,0 +1,5 @@
+---
+# file: all.yml
+- hosts: all
+  roles:
+    - { role: kscfg, when: "ansible_os_family == 'RedHat'" }
