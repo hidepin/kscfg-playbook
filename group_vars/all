@@ -2,7 +2,7 @@ kscfg:
   - {
       kscfg_hostname:   'centos6.localdomain',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'enp192',
+      kscfg_netdev:     'ens192',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
@@ -13,7 +13,7 @@ kscfg:
   - {
       kscfg_hostname:   'centos7.localdomain',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'enp192',
+      kscfg_netdev:     'ens192',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
