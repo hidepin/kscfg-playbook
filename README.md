@@ -10,8 +10,13 @@ kscfg-playbook
 3. apacheの起動 (kscfg_httpd_enableがTrueの場合)
 4. kickstartファイルの配置
 
+インストール時に「tab」を押下して下記を設定
+  - rhel6の場合
+    - 「vmlinuz initrd=initrd.img」の後ろに、ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)
+
 # 動作確認済み環境
 
+- RHEL6
 - CentOS6
 - CentOS7
 
