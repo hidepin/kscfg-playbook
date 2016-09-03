@@ -37,7 +37,7 @@
 
 - name: kscfg deploy
   template:
-    src=centos7-ks.cfg.j2
+    src="{{item.kscfg_template}}"
     dest="{{kscfg_path}}/{{item.kscfg_hostname|regex_replace('\..*$', '')}}.cfg"
     owner=root
     group=root
