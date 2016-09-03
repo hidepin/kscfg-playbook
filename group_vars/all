@@ -1,9 +1,9 @@
 kscfg_httpd_enable: False
-kscfg_path: /opt/docker/ks/volumes/kscfg
+kscfg_path: /var/www/html/kscfg
 kscfg:
   - {
       kscfg_template:   'rhel6-small-ks.cfg.j2',
-      kscfg_hostname:   'rhel6.localdomain',
+      kscfg_hostname:   'rhel6-small.localdomain',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
