@@ -43,4 +43,4 @@
     group=root
     mode=0644
     backup=yes
-  with_items: kscfg
+  with_items: "{{kscfg}}"
