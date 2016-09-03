@@ -17,16 +17,19 @@ bootloader --location=mbr --driveorder={{item.kscfg_hdddev}} --append="crashkern
 # here so unless you clear all partitions first, this is
 # not guaranteed to work
 #clearpart --all --drives=sda
+zerombr
 clearpart --all --initlabel --drives={{item.kscfg_hdddev}}
 
 #part /boot --fstype=ext4 --size=500
 #part / --fstype=ext4 --asprimary --size=40000
 #part swap --asprimary --size=1024
 #part /dump --fstype=ext4 --grow --asprimary --size=200
-part /boot --fstype="ext4" --ondisk={{item.kscfg_hdddev}} --size=500 --asprimary
-part / --fstype="ext4" --ondisk={{item.kscfg_hdddev}} --grow --asprimary
-part swap --fstype="swap" --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_swapsize}} --asprimary
-part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}}  --size={{item.kscfg_swapsize}} --grow --asprimary
+part /boot --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --size=500 --asprimary
+part / --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --size=1 --grow --asprimary
+part swap --fstype=swap --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_swapsize}} --asprimary
+part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}}  --size={{item.kscfg_swapsize}} --asprimary
+
+poweroff
 
 %packages
 @core
