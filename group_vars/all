@@ -1,4 +1,5 @@
 kscfg_httpd_enable: False
+kscfg_path: /var/www/html/kscfg
 kscfg:
   - {
       kscfg_hostname:   'centos6.localdomain',

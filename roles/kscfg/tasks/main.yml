@@ -33,12 +33,12 @@
   when: kscfg_httpd_enable
 
 - name: create kscfg dir
-  file: path=/var/www/html/kscfg state=directory owner=root group=root mode=0755
+  file: path="{{kscfg_path}}" state=directory owner=root group=root mode=0755
 
 - name: kscfg deploy
   template:
     src=centos7-ks.cfg.j2
-    dest="/var/www/html/kscfg/{{item.kscfg_hostname|regex_replace('\..*$', '')}}.cfg"
+    dest="{{kscfg_path}}/{{item.kscfg_hostname|regex_replace('\..*$', '')}}.cfg"
     owner=root
     group=root
     mode=0644
