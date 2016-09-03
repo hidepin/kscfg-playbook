@@ -5,11 +5,9 @@ kscfg-playbook
 
 テンプレートからkickstartファイルを作成するansibleのplaybook
 
-作成されるkickstartファイルは、CentOS7用
-
-1. apacheのインストール
-2. apacheの設定
-3. apacheの起動
+1. apacheのインストール (kscfg_httpd_enableがTrueの場合)
+2. apacheの設定 (kscfg_httpd_enableがTrueの場合)
+3. apacheの起動 (kscfg_httpd_enableがTrueの場合)
 4. kickstartファイルの配置
 
 # 動作確認済み環境
