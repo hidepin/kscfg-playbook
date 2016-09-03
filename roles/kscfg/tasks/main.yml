@@ -19,7 +19,7 @@
       src={{item}}
       dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
     with_items:
-      - "{{is_httpd_setting.backup}}"
+      - "{{is_httpd_setting.backup|default([])}}"
       - /etc/httpd/conf/httpd.conf
     when: is_httpd_setting|changed
 
