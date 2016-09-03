@@ -1,3 +1,4 @@
+kscfg_httpd_enable: False
 kscfg:
   - {
       kscfg_hostname:   'centos6.localdomain',
