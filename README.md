@@ -28,14 +28,14 @@ kscfg-playbook
       - kscfg_path        : kickstartの設定ファイルを配置するディレクトリ
   - kscfg設定
       - kscfg_template:   : 使用するテンプレートファイル
-        - rhel6-small-ks.cfg.j2     : rhel6を最小構成で構築する場合のテンプレートファイル(RHEL6.8のanacondaベース)
-        - rhel6-default-ks.cfg.j2   : rhel6を一般的な構成で構築する場合のテンプレートファイル(RHEL6.8のanacondaベース)
-        - rhel7-small-ks.cfg.j2     : rhel7を最小構成で構築する場合のテンプレートファイル(RHEL7.2のanacondaベース)
-        - rhel7-default-ks.cfg.j2   : rhelを一般的な構成で構築する場合のテンプレートファイル(RHEL7.2のanacondaベース)
-        - centos6-small-ks.cfg.j2   : centos6を最小構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
-        - centos6-default-ks.cfg.j2 : centos6を一般的な構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
-        - centos7-small-ks.cfg.j2   : centos7を最小構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
-        - centos7-default-ks.cfg.j2 : centosを一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
+        - rhel6-small-ks.cfg.j2   : rhel6を最小構成で構築する場合のテンプレートファイル(RHEL6.8のanacondaベース)
+        - rhel6-std-ks.cfg.j2     : rhel6を一般的な構成で構築する場合のテンプレートファイル(RHEL6.8のanacondaベース)
+        - rhel7-small-ks.cfg.j2   : rhel7を最小構成で構築する場合のテンプレートファイル(RHEL7.2のanacondaベース)
+        - rhel7-std-ks.cfg.j2     : rhelを一般的な構成で構築する場合のテンプレートファイル(RHEL7.2のanacondaベース)
+        - centos6-small-ks.cfg.j2 : centos6を最小構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
+        - centos6-std-ks.cfg.j2   : centos6を一般的な構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
+        - centos7-small-ks.cfg.j2 : centos7を最小構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
+        - centos7-std-ks.cfg.j2   : centosを一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
       - kscfg_hostname    : kickstartで作成するマシンのホスト名(ドメイン含む)
       - kscfg_hdddev      : kickstartで作成するマシンのHDDのデバイス名
       - kscfg_netdev      : kickstartで作成するマシンのNICのデバイス名
@@ -51,6 +51,20 @@ kscfg-playbook
 
   - swapサイズは、kscfg_memsizeの半分の領域を割り当てる
   - kdump領域は、/dumpという名称で、kscfg_memsizeの1.1倍の領域を割り当てる。
+  - rhel6-small-ks.cfg.j2のパッケージ
+    - 最低限
+  - rhel6-std-ks.cfg.j2のパッケージ
+    - ソフトウェア開発ワークステーション
+      - ベースシステム
+        - ネットワーキングツール: 追加チェック
+          - 追加パッケージ : wiresharkに追加チェック
+      - システム管理
+        - SNMPサポート    : 追加チェック
+      - 仮想化
+        - (すべてのチェックをはずす)
+      - 開発
+        - その他の開発    : 追加削除なし
+          - 追加パッケージ : postgresql-devel-*のチェックをはずす
 
 # 依存関係
 
