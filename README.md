@@ -11,8 +11,12 @@ kscfg-playbook
 4. kickstartファイルの配置
 
 インストール時に「tab」を押下して下記を設定
-  - rhel6の場合
-    - 「vmlinuz initrd=initrd.img」の後ろに、ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)
+  - rhel6/centos6の場合
+    - 「vmlinuz initrd=initrd.img」の後ろに、「ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してEnter
+
+  - rhel7/centos7の場合
+    - 「vmlinuz initrd=initrd.img (略) quiet」の後ろに、「ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してEnter
+    - メディアチェックを省略した場合は、「rd.live.check」を削除する
 
 # 動作確認済み環境
 
@@ -84,8 +88,9 @@ kscfg-playbook
       - 開発
         - その他の開発    : 追加削除なし
           - 追加パッケージ : postgresql-devel-*のチェックをはずす
-
+  - centos7-small-ks.cfg.j2のパッケージ
+    - minimal
 
 # 依存関係
-p
+
 依存するroleはありません

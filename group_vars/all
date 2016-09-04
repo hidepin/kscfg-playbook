@@ -42,10 +42,10 @@ kscfg:
       kscfg_kdump_part: True,
     }
   - {
-      kscfg_template:   'centos7-ks.cfg.j2',
-      kscfg_hostname:   'centos7.localdomain',
+      kscfg_template:   'centos7-small-ks.cfg.j2',
+      kscfg_hostname:   'centos7-small.localdomain',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'ens192',
+      kscfg_netdev:     'eno16780032',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
