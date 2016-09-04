@@ -46,7 +46,7 @@ kscfg-playbook
       - kscfg_rootpw      : kickstartで作成するマシンのrootパスワード
       - kscfg_memsize     : kickstartで作成するマシンのメモリのサイズ(単位MB)
       - kscfg_kdump_part  : Trueの場合、memsizeの1.1倍の領域をkdump用に作成する
-      - kscfg_web_enable  : Trueの場合、webサーバパッケージをインストールする
+      - kscfg_web_enable  : Trueの場合、webサーバパッケージをインストールする(stdの場合に設定可能)
 
 # 仕様
 
@@ -68,7 +68,24 @@ kscfg-playbook
       - 開発
         - その他の開発    : 追加削除なし
           - 追加パッケージ : postgresql-devel-*のチェックをはずす
+  - centos6-small-ks.cfg.j2のパッケージ
+    - minimal
+  - centos6-std-ks.cfg.j2のパッケージ
+    - ソフトウェア開発ワークステーション
+      - ベースシステム
+        - ネットワーキングツール: 追加チェック
+          - 追加パッケージ : wiresharkに追加チェック
+      - Webサービス
+        - Webサーバ       : 追加チェック
+      - システム管理
+        - SNMPサポート    : 追加チェック
+      - 仮想化
+        - (すべてのチェックをはずす)
+      - 開発
+        - その他の開発    : 追加削除なし
+          - 追加パッケージ : postgresql-devel-*のチェックをはずす
+
 
 # 依存関係
-
+p
 依存するroleはありません
