@@ -43,4 +43,27 @@
     group=root
     mode=0644
     backup=yes
+  register: is_kscfg_setting
   with_items: "{{kscfg}}"
+
+- block:
+  - name: backup before kscfg setting
+    fetch:
+      src="{{item.backup_file}}"
+      dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+    when: item.backup_file is defined
+    with_items: "{{is_kscfg_setting.results}}"
+
+  - name: backup after kscfg setting
+    fetch:
+      src="{{item.dest}}"
+      dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+    when: item.dest is defined
+    with_items: "{{is_kscfg_setting.results}}"
+
+  - name: delete kscfg setting backup
+    file: path="{{item.backup_file}}" state=absent
+    when: item.backup_file is defined
+    with_items: "{{is_kscfg_setting.results}}"
+
+  when: is_kscfg_setting|changed
