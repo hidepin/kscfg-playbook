@@ -71,7 +71,7 @@ kscfg-playbook
   - centos6-small-ks.cfg.j2のパッケージ
     - minimal
   - centos6-std-ks.cfg.j2のパッケージ
-    - ソフトウェア開発ワークステーション
+    - Software Development Workastation
       - ベースシステム
         - ネットワーキングツール: 追加チェック
           - 追加パッケージ : wiresharkに追加チェック
