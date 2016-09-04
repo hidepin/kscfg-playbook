@@ -90,6 +90,14 @@ kscfg-playbook
           - 追加パッケージ : postgresql-devel-*のチェックをはずす
   - centos7-small-ks.cfg.j2のパッケージ
     - minimal
+  - centos7-std-ks.cfg.j2のパッケージ
+    - サーバー(GUI使用)
+      - 大規模システムのパフォーマンス: 追加チェック
+      - パフォーマンスツール        : 追加チェック
+      - 開発ツール                 : 追加チェック
+  - centos7-small-ks.cfg.j2のパッケージ
+    - minimal
+
 
 # 依存関係
 
