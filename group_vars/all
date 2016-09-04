@@ -12,7 +12,8 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     'root123',
       kscfg_memsize:    '4096',
-      kscfg_kdump_part: True
+      kscfg_kdump_part: True,
+      kscfg_web_enable: False
     }
   - {
       kscfg_template:   'rhel6-std-ks.cfg.j2',
@@ -25,7 +26,8 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     'root123',
       kscfg_memsize:    '4096',
-      kscfg_kdump_part: True
+      kscfg_kdump_part: True,
+      kscfg_web_enable: False
     }
   - {
       kscfg_template:   'centos7-ks.cfg.j2',
@@ -38,5 +40,6 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     'root123',
       kscfg_memsize:    '4096',
-      kscfg_kdump_part: True
+      kscfg_kdump_part: True,
+      kscfg_web_enable: False
     }

@@ -46,6 +46,7 @@ kscfg-playbook
       - kscfg_rootpw      : kickstartで作成するマシンのrootパスワード
       - kscfg_memsize     : kickstartで作成するマシンのメモリのサイズ(単位MB)
       - kscfg_kdump_part  : Trueの場合、memsizeの1.1倍の領域をkdump用に作成する
+      - kscfg_web_enable  : Trueの場合、webサーバパッケージをインストールする
 
 # 仕様
 
@@ -58,6 +59,8 @@ kscfg-playbook
       - ベースシステム
         - ネットワーキングツール: 追加チェック
           - 追加パッケージ : wiresharkに追加チェック
+      - Webサービス
+        - Webサーバ       : 追加チェック
       - システム管理
         - SNMPサポート    : 追加チェック
       - 仮想化
