@@ -11,7 +11,8 @@ kscfg:
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     'root123',
-      kscfg_memsize:    '4096'
+      kscfg_memsize:    '4096',
+      kscfg_kdump_part: True
     }
   - {
       kscfg_template:   'centos7-ks.cfg.j2',
@@ -23,5 +24,6 @@ kscfg:
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     'root123',
-      kscfg_memsize:    '4096'
+      kscfg_memsize:    '4096',
+      kscfg_kdump_part: True
     }
