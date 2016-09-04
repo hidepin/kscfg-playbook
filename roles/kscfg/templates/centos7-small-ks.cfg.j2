@@ -27,7 +27,6 @@ timezone Asia/Tokyo --isUtc --nontp
 bootloader --location=mbr --boot-drive={{item.kscfg_hdddev}}
 # Partition clearing information
 clearpart --all --initlabel --drives={{item.kscfg_hdddev}}
-
 # Disk partitioning information
 part /boot --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=500 --asprimary
 part / --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1 --grow  --asprimary

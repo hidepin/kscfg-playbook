@@ -1,8 +1,6 @@
 #version=DEVEL
 # System authorization information
 auth --enableshadow --passalgo=sha512
-repo --name="Server-HighAvailability" --baseurl=file:///run/install/repo/addons/HighAvailability
-repo --name="Server-ResilientStorage" --baseurl=file:///run/install/repo/addons/ResilientStorage
 # Use CDROM installation media
 cdrom
 # Use graphical install
@@ -25,6 +23,8 @@ rootpw --plaintext {{item.kscfg_rootpw}}
 services --disabled="chronyd"
 # System timezone
 timezone Asia/Tokyo --isUtc --nontp
+# X Window System configuration information
+xconfig  --startxonboot
 # System bootloader configuration
 bootloader --location=mbr --boot-drive={{item.kscfg_hdddev}}
 # Partition clearing information
@@ -40,8 +40,23 @@ part /dump --fstype="ext4" --ondisk={{item.kscfg_hdddev}} --size={{(item.kscfg_m
 poweroff
 
 %packages
-@^minimal
+@^graphical-server-environment
+@base
 @core
+@desktop-debugging
+@development
+@dial-up
+@fonts
+@gnome-desktop
+@guest-agents
+@guest-desktop-agents
+@input-methods
+@internet-browser
+@large-systems
+@multimedia
+@performance
+@print-client
+@x11
 
 %end
 
