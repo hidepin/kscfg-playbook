@@ -18,7 +18,7 @@ network  --bootproto=static --device={{item.kscfg_netdev|default('link')}} --gat
 network  --hostname={{item.kscfg_hostname}}
 
 # Root password
-rootpw --plaintext {{item.kscfg_rootpw}}
+rootpw --iscrypted {{item.kscfg_rootpw}}
 # System services
 services --disabled="chronyd"
 # System timezone
