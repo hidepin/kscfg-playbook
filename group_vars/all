@@ -10,7 +10,7 @@ kscfg:
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
-      kscfg_rootpw:     'root123',
+      kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
       kscfg_kdump_part: True,
     }
@@ -23,7 +23,7 @@ kscfg:
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
-      kscfg_rootpw:     'root123',
+      kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
       kscfg_kdump_part: True,
       kscfg_web_enable: False
@@ -37,7 +37,7 @@ kscfg:
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
-      kscfg_rootpw:     'root123',
+      kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
       kscfg_kdump_part: True,
     }
@@ -50,7 +50,7 @@ kscfg:
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
-      kscfg_rootpw:     'root123',
+      kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
       kscfg_kdump_part: True,
       kscfg_web_enable: False

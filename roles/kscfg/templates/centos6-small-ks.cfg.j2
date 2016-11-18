@@ -6,7 +6,7 @@ cdrom
 lang ja_JP.UTF-8
 keyboard jp106
 network --onboot yes --device {{item.kscfg_netdev}} --bootproto static --ip {{item.kscfg_ip}} --netmask {{item.kscfg_netmask}} --gateway {{item.kscfg_gateway}} --noipv6 --nameserver {{item.kscfg_nameserver}} --hostname {{item.kscfg_hostname}}
-rootpw --plaintext {{item.kscfg_rootpw}}
+rootpw --iscrypted {{item.kscfg_rootpw}}
 firewall --service=ssh
 authconfig --enableshadow --passalgo=sha512
 selinux --enforcing

@@ -47,7 +47,7 @@ kscfg-playbook
       - kscfg_ip          : kickstartで作成するマシンのIPアドレス
       - kscfg_nameserver  : kickstartで作成するマシンのnameserverアドレス
       - kscfg_netmask     : kickstartで作成するマシンのnetmask
-      - kscfg_rootpw      : kickstartで作成するマシンのrootパスワード
+      - kscfg_rootpw      : kickstartで作成するマシンのrootパスワード(default: root123)
       - kscfg_memsize     : kickstartで作成するマシンのメモリのサイズ(単位MB)
       - kscfg_kdump_part  : Trueの場合、memsizeの1.1倍の領域をkdump用に作成する
       - kscfg_web_enable  : Trueの場合、webサーバパッケージをインストールする(stdの場合に設定可能)
