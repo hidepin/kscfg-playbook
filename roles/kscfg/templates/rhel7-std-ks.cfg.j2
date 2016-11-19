@@ -33,9 +33,6 @@ bootloader --location=mbr --boot-drive={{item.kscfg_hdddev}}
 # Partition clearing information
 clearpart --all --initlabel --drives={{item.kscfg_hdddev}}
 # Disk partitioning information
-{% if item.kscfg_uefi_part %}
-part /boot/efi --fstype="efi" --ondisk={{item.kscfg_hdddev}} --size=200 --fsoptions="umask=0077,shortname=winnt"
-{% endif %}
 part /boot --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=500 --asprimary
 part / --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1 --grow  --asprimary
 part swap --fstype="swap" --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_memsize | int // 2}} --asprimary
