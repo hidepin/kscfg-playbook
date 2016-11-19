@@ -77,7 +77,7 @@ kscfg:
       kscfg_template:   'centos6-small-ks.cfg.j2',
       kscfg_hostname:   'centos6-small.localdomain',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'link',
+      kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
