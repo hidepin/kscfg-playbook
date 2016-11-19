@@ -11,7 +11,7 @@ firewall --service=ssh
 authconfig --enableshadow --passalgo=sha512
 selinux --enforcing
 timezone Asia/Tokyo
-bootloader --location={% if item.kscfg_uefi_firmware %}partition{% else %}mbr{% endif %} --driveorder={{item.kscfg_hdddev}} --append="crashkernel=auto rhgb quiet"
+bootloader --location={% if item.kscfg_uefi_firmware %}partition{% else %}mbr{% endif %} --driveorder={{item.kscfg_hdddev}} --append="crashkernel=auto"
 
 # The following is the partition information you requested
 # Note that any partitions you deleted are not expressed
@@ -38,11 +38,15 @@ part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}} {% if not item.kscfg_uef
 
 poweroff
 
-%packages
-@core
+%packages --nobase
 @japanese-support
 @server-policy
 @workstation-policy
+authconfig
+authconfig-6.1.12-23.el6.x86_64
+newt
+newt-python
+slang
 {% for pkg in item.kscfg_pkg_addlist %}
 {{pkg}}
 {% endfor %}
