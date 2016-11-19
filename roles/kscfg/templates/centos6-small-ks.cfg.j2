@@ -38,4 +38,7 @@ poweroff
 @japanese-support
 @server-policy
 @workstation-policy
+{% for pkg in item.kscfg_pkg_addlist %}
+{{pkg}}
+{% endfor %}
 %end

@@ -65,7 +65,9 @@ poweroff
 @print-client
 @x11
 chrony
-
+{% for pkg in item.kscfg_pkg_addlist %}
+{{pkg}}
+{% endfor %}
 %end
 
 %addon com_redhat_subscription_manager
