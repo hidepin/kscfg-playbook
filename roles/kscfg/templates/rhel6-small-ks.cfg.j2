@@ -11,7 +11,7 @@ firewall --service=ssh
 authconfig --enableshadow --passalgo=sha512
 selinux --enforcing
 timezone Asia/Tokyo
-bootloader --location=mbr --driveorder={{item.kscfg_hdddev}} --append="crashkernel=auto rhgb quiet"
+bootloader --location={% if item.kscfg_uefi_firmware %}partition{% else %}mbr{% endif %} --driveorder={{item.kscfg_hdddev}} --append="crashkernel=auto"
 # The following is the partition information you requested
 # Note that any partitions you deleted are not expressed
 # here so unless you clear all partitions first, this is
@@ -20,15 +20,19 @@ bootloader --location=mbr --driveorder={{item.kscfg_hdddev}} --append="crashkern
 zerombr
 clearpart --all --initlabel --drives={{item.kscfg_hdddev}}
 
-#part /boot --fstype=ext4 --asprimary --size=512
-#part /dump --fstype=ext4 --asprimary --size=4096
-#part swap --asprimary --size=4096
-#part / --fstype=ext4 --grow --asprimary --size=1
-part /boot --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --size=512 --asprimary
-part / --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --size=1 --grow --asprimary
-part swap --fstype=swap --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_memsize | int // 2}} --asprimary
+#part /boot/efi --fstype=efi --size=256
+#part /boot --fstype=ext4 --size=512
+#part / --fstype=ext4 --grow --size=1
+#part /dump --fstype=ext4 --size=4096
+#part swap -size=4096
+{% if item.kscfg_uefi_firmware %}
+part /boot/efi --fstype=efi --size=256
+{% endif %}
+part /boot --fstype=ext4 --ondisk={{item.kscfg_hdddev}} {% if not item.kscfg_uefi_firmware %}--asprimary{% endif %} --size=512
+part / --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --grow {% if not item.kscfg_uefi_firmware %}--asprimary{% endif %} --size=1
+part swap --fstype=swap --ondisk={{item.kscfg_hdddev}} {% if not item.kscfg_uefi_firmware %}--asprimary{% endif %} --size={{item.kscfg_memsize | int // 2}}
 {% if item.kscfg_kdump_part %}
-part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}} --size={{(item.kscfg_memsize | int * 1.1) | int}} --asprimary
+part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}} {% if not item.kscfg_uefi_firmware %}--asprimary{% endif %} --size={{(item.kscfg_memsize | int * 1.1) | int}}
 {% endif %}
 
 poweroff
