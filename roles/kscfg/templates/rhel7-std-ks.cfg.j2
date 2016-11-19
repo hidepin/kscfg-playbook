@@ -17,7 +17,7 @@ keyboard --vckeymap=jp --xlayouts='jp'
 lang ja_JP.UTF-8
 
 # Network information
-network  --bootproto=static --device={{item.kscfg_netdev|default('link')}} --gateway={{item.kscfg_gateway}} --ip={{item.kscfg_ip}} --nameserver={{item.kscfg_nameserver}} --netmask={{item.kscfg_netmask}} --noipv6 --activate
+network  --bootproto=static --device={{item.kscfg_netdev|default('link')}} --gateway={{item.kscfg_gateway}} --ip={{item.kscfg_ip}} {% if item.kscfg_nameserver is defined %} --nameserver {{item.kscfg_nameserver}} {% endif %}--netmask={{item.kscfg_netmask}} --noipv6 --activate
 network  --hostname={{item.kscfg_hostname}}
 
 # Root password
