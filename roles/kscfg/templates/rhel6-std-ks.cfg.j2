@@ -72,9 +72,6 @@ poweroff
 @server-policy
 @tex
 @technical-writing
-{% if item.kscfg_web_enable %}
-@web-server
-{% endif %}
 @x11
 libXinerama-devel
 openmotif-devel
@@ -121,10 +118,6 @@ libXp
 lksctp-tools
 wireshark
 perl-DBD-SQLite
-{% if item.kscfg_web_enable %}
-certmonger
-perl-CGI
-{% endif %}
 -postgresql-devel
 {% for pkg in item.kscfg_pkg_addlist %}
 {{pkg}}

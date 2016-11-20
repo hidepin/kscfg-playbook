@@ -60,7 +60,6 @@ kscfg-playbook
       - kscfg_memsize       : kickstartで作成するマシンのメモリのサイズ(単位MB)
       - kscfg_uefi_firmware : kickstartで作成するマシンのfirmwareがuefiの場合Trueとする (Falseにした場合BIOSモードとして設定する)
       - kscfg_kdump_part    : Trueの場合、memsizeの1.1倍の領域をkdump用に作成する (Falseにした場合kdump領域を確保しない)
-      - kscfg_web_enable    : Trueの場合、webサーバパッケージをインストールする(stdの場合に設定可能)
       - kscfg_pkg_addlist   : 追加したいパッケージを追加する
 
 # 仕様

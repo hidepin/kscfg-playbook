@@ -31,10 +31,10 @@ kscfg:
       kscfg_memsize:    '4096',
       kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
-      kscfg_web_enable: False,
       kscfg_pkg_addlist:
         [
-          screen,
+          '@web-server',
+          'screen',
         ]
     }
   - {
@@ -67,10 +67,14 @@ kscfg:
       kscfg_memsize:    '4096',
       kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
-      kscfg_web_enable: False,
       kscfg_pkg_addlist:
         [
-          tmux,
+          'wireshark',
+          'net-snmp',
+          '@debugging',
+          '@web-server',
+          'java-1.8.0-openjdk-devel',
+          'tmux',
         ]
     }
   - {
@@ -122,6 +126,11 @@ kscfg:
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
-          tmux,
+          'wireshark',
+          'net-snmp',
+          '@debugging',
+          '@web-server',
+          'java-1.8.0-openjdk-devel',
+          'tmux',
         ]
     }
