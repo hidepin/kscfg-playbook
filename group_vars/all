@@ -4,14 +4,16 @@ kscfg:
   - {
       kscfg_template:   'rhel6-small-ks.cfg.j2',
       kscfg_hostname:   'rhel6-small.localdomain',
+      kscfg_keymap:     'jp106',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'link',
+      kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
@@ -20,24 +22,27 @@ kscfg:
   - {
       kscfg_template:   'rhel6-std-ks.cfg.j2',
       kscfg_hostname:   'rhel6-std.localdomain',
+      kscfg_keymap:     'jp106',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'link',
+      kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
-      kscfg_web_enable: False,
       kscfg_pkg_addlist:
         [
-          screen,
+          '@web-server',
+          'screen',
         ]
     }
   - {
       kscfg_template:   'rhel7-small-ks.cfg.j2',
       kscfg_hostname:   'rhel7-small.localdomain',
+      kscfg_keymap:     'jp',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -46,6 +51,7 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
@@ -54,6 +60,7 @@ kscfg:
   - {
       kscfg_template:   'rhel7-std-ks.cfg.j2',
       kscfg_hostname:   'rhel7-std.localdomain',
+      kscfg_keymap:     'jp',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -62,24 +69,31 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
-      kscfg_web_enable: False,
       kscfg_pkg_addlist:
         [
-          tmux,
+          'wireshark',
+          'net-snmp',
+          '@debugging',
+          '@web-server',
+          'java-1.8.0-openjdk-devel',
+          'tmux',
         ]
     }
   - {
       kscfg_template:   'centos6-small-ks.cfg.j2',
       kscfg_hostname:   'centos6-small.localdomain',
+      kscfg_keymap:     'jp106',
       kscfg_hdddev:     'sda',
-      kscfg_netdev:     'link',
+      kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
       kscfg_ip:         '172.16.111.10',
       kscfg_nameserver: '172.16.111.1',
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
@@ -88,6 +102,7 @@ kscfg:
   - {
       kscfg_template:   'centos7-small-ks.cfg.j2',
       kscfg_hostname:   'centos7-small.localdomain',
+      kscfg_keymap:     'jp',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -96,6 +111,7 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
@@ -104,6 +120,7 @@ kscfg:
   - {
       kscfg_template:   'centos7-std-ks.cfg.j2',
       kscfg_hostname:   'centos7-std.localdomain',
+      kscfg_keymap:     'jp',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -112,9 +129,15 @@ kscfg:
       kscfg_netmask:    '255.255.255.0',
       kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
       kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
       kscfg_kdump_part: True,
       kscfg_pkg_addlist:
         [
-          tmux,
+          'wireshark',
+          'net-snmp',
+          '@debugging',
+          '@web-server',
+          'java-1.8.0-openjdk-devel',
+          'tmux',
         ]
     }
