@@ -4,6 +4,7 @@ kscfg:
   - {
       kscfg_template:   'rhel6-small-ks.cfg.j2',
       kscfg_hostname:   'rhel6-small.localdomain',
+      kscfg_keymap:     'jp106'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
@@ -21,6 +22,7 @@ kscfg:
   - {
       kscfg_template:   'rhel6-std-ks.cfg.j2',
       kscfg_hostname:   'rhel6-std.localdomain',
+      kscfg_keymap:     'jp106'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
@@ -40,6 +42,7 @@ kscfg:
   - {
       kscfg_template:   'rhel7-small-ks.cfg.j2',
       kscfg_hostname:   'rhel7-small.localdomain',
+      kscfg_keymap:     'jp'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -57,6 +60,7 @@ kscfg:
   - {
       kscfg_template:   'rhel7-std-ks.cfg.j2',
       kscfg_hostname:   'rhel7-std.localdomain',
+      kscfg_keymap:     'jp'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -80,6 +84,7 @@ kscfg:
   - {
       kscfg_template:   'centos6-small-ks.cfg.j2',
       kscfg_hostname:   'centos6-small.localdomain',
+      kscfg_keymap:     'jp106'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'eth0',
       kscfg_gateway:    '172.16.111.1',
@@ -97,6 +102,7 @@ kscfg:
   - {
       kscfg_template:   'centos7-small-ks.cfg.j2',
       kscfg_hostname:   'centos7-small.localdomain',
+      kscfg_keymap:     'jp'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',
@@ -114,6 +120,7 @@ kscfg:
   - {
       kscfg_template:   'centos7-std-ks.cfg.j2',
       kscfg_hostname:   'centos7-std.localdomain',
+      kscfg_keymap:     'jp'
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
       kscfg_gateway:    '172.16.111.1',

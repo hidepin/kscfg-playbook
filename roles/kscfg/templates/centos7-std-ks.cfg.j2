@@ -9,7 +9,7 @@ graphical
 firstboot --enable
 ignoredisk --only-use={{item.kscfg_hdddev}}
 # Keyboard layouts
-keyboard --vckeymap=jp --xlayouts='jp'
+keyboard --vckeymap={{item.kscfg_keymap}} --xlayouts='{{item.kscfg_keymap}}'
 # System language
 lang ja_JP.UTF-8
 
