@@ -1,6 +1,7 @@
 #version=DEVEL
 # System authorization information
 auth --enableshadow --passalgo=sha512
+# License agreement
 eula --agreed
 repo --name="Server-HighAvailability" --baseurl=file:///run/install/repo/addons/HighAvailability
 repo --name="Server-ResilientStorage" --baseurl=file:///run/install/repo/addons/ResilientStorage
@@ -23,9 +24,9 @@ network  --hostname={{item.kscfg_hostname}}
 # Root password
 rootpw --iscrypted {{item.kscfg_rootpw}}
 # System services
-services --enabled="chronyd"
+services --disabled="chronyd"
 # System timezone
-timezone Asia/Tokyo --isUtc
+timezone Asia/Tokyo --isUtc --nontp
 # X Window System configuration information
 xconfig  --startxonboot
 # System bootloader configuration
@@ -33,11 +34,14 @@ bootloader --location=mbr --boot-drive={{item.kscfg_hdddev}}
 # Partition clearing information
 clearpart --all --initlabel --drives={{item.kscfg_hdddev}}
 # Disk partitioning information
-part /boot --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1024 --asprimary
-part / --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1 --grow  --asprimary
-part swap --fstype="swap" --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_memsize | int // 2}} --asprimary
+{% if item.kscfg_uefi_firmware %}
+part /boot/efi --fstype="efi" --ondisk={{item.kscfg_hdddev}} --size=256 --fsoptions="umask=0077,shortname=winnt"
+{% endif %}
+part /boot --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1024
+part / --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size=1 --grow
+part swap --fstype="swap" --ondisk={{item.kscfg_hdddev}} --size={{item.kscfg_memsize | int // 2}}
 {% if item.kscfg_kdump_part %}
-part /dump --fstype="ext4" --ondisk={{item.kscfg_hdddev}} --size={{(item.kscfg_memsize | int * 1.1) | int}} --asprimary
+part /dump --fstype="xfs" --ondisk={{item.kscfg_hdddev}} --size={{(item.kscfg_memsize | int * 1.1) | int}}
 {% endif %}
 
 poweroff
@@ -61,10 +65,10 @@ poweroff
 @performance
 @print-client
 @x11
-chrony
 {% for pkg in item.kscfg_pkg_addlist %}
 {{pkg}}
 {% endfor %}
+
 %end
 
 %addon com_redhat_subscription_manager
