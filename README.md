@@ -48,7 +48,7 @@ kscfg-playbook
         - centos6-small-ks.cfg.j2 : centos6を最小構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
         - centos6-std-ks.cfg.j2   : centos6を一般的な構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース) (検討中)
         - centos7-small-ks.cfg.j2 : centos7を最小構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
-        - centos7-std-ks.cfg.j2   : centosを一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース) (検討中)
+        - centos7-std-ks.cfg.j2   : centosを一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
       - kscfg_hostname      : kickstartで作成するマシンのホスト名(ドメイン含む)
       - kscfg_hdddev        : kickstartで作成するマシンのHDDのデバイス名
       - kscfg_netdev        : kickstartで作成するマシンのNICのデバイス名 (RHEL6系の場合linkを指定するとネットワーク設定が正常に完了しない)
