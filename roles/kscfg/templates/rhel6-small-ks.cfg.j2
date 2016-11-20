@@ -37,8 +37,7 @@ part /dump --fstype=ext4 --ondisk={{item.kscfg_hdddev}} {% if not item.kscfg_uef
 
 poweroff
 
-%packages
-@core
+%packages --nobase
 @japanese-support
 @server-policy
 {% for pkg in item.kscfg_pkg_addlist %}
