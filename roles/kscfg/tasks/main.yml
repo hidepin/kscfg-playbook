@@ -9,22 +9,22 @@
       name=/etc/httpd/conf/httpd.conf
       regexp="^ServerName "
       insertafter="^#ServerName "
-      line="ServerName {{ansible_fqdn}}"
+      line="ServerName {{ ansible_fqdn }}"
       backup=yes
     register: is_httpd_setting
     notify: httpd restart
 
   - name: backup httpd.conf
     fetch:
-      src={{item}}
-      dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+      src="{{ item }}"
+      dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     with_items:
-      - "{{is_httpd_setting.backup|default([])}}"
+      - "{{ is_httpd_setting.backup|default([]) }}"
       - /etc/httpd/conf/httpd.conf
     when: is_httpd_setting|changed
 
   - name: delete httpd.conf backup
-    file: path={{is_httpd_setting.backup}} state=absent
+    file: path="{{ is_httpd_setting.backup }}" state=absent
     when: is_httpd_setting|changed
 
   - name: httpd service enabled
@@ -33,37 +33,37 @@
   when: kscfg_httpd_enable
 
 - name: create kscfg dir
-  file: path="{{kscfg_path}}" state=directory owner=root group=root mode=0755
+  file: path="{{ kscfg_path }}" state=directory owner=root group=root mode=0755
 
 - name: kscfg deploy
   template:
-    src="{{item.kscfg_template}}"
-    dest="{{kscfg_path}}/{{item.kscfg_hostname|regex_replace('\..*$', '')}}.cfg"
+    src="{{ item.kscfg_template }}"
+    dest="{{ kscfg_path }}/{{ item.kscfg_hostname|regex_replace('\..*$', '') }}.cfg"
     owner=root
     group=root
     mode=0644
     backup=yes
   register: is_kscfg_setting
-  with_items: "{{kscfg}}"
+  with_items: "{{ kscfg }}"
 
 - block:
   - name: backup before kscfg setting
     fetch:
-      src="{{item.backup_file}}"
-      dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+      src="{{ item.backup_file }}"
+      dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: item.backup_file is defined
-    with_items: "{{is_kscfg_setting.results}}"
+    with_items: "{{ is_kscfg_setting.results }}"
 
   - name: backup after kscfg setting
     fetch:
-      src="{{item.dest}}"
-      dest="backup/{{ansible_date_time.date}}-{{ansible_date_time.time|regex_replace(':', '')}}"
+      src="{{ item.dest }}"
+      dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: item.dest is defined
-    with_items: "{{is_kscfg_setting.results}}"
+    with_items: "{{ is_kscfg_setting.results }}"
 
   - name: delete kscfg setting backup
-    file: path="{{item.backup_file}}" state=absent
+    file: path="{{ item.backup_file }}" state=absent
     when: item.backup_file is defined
-    with_items: "{{is_kscfg_setting.results}}"
+    with_items: "{{ is_kscfg_setting.results }}"
 
   when: is_kscfg_setting|changed
