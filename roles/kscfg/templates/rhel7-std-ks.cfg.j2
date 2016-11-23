@@ -80,6 +80,7 @@ done
 {% if item.kscfg_uefi_firmware %}
 sed -i 's/defaults,uid=0,gid=0,//' /etc/fstab
 {% endif %}
+sed -i 's/USEFPRINTD=no/USEFPRINTD=yes/' /etc/sysconfig/authconfig
 
 %end
 
