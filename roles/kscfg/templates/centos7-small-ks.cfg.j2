@@ -59,6 +59,7 @@ done
 sed -i 's/defaults,uid=0,gid=0,//' /etc/fstab
 {% endif %}
 sed -i 's/USEFPRINTD=no/USEFPRINTD=yes/' /etc/sysconfig/authconfig
+sed -i '/pam_env.so/a\auth        sufficient    pam_fprintd.so' /etc/pam.d/system-auth-ac
 
 %end
 
