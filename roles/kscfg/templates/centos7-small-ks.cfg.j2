@@ -6,7 +6,7 @@ cdrom
 # Use graphical install
 graphical
 # Run the Setup Agent on first boot
-firstboot --enable
+firstboot --disable
 ignoredisk --only-use={{item.kscfg_hdddev}}
 # Keyboard layouts
 keyboard --vckeymap={{item.kscfg_keymap}} --xlayouts='{{item.kscfg_keymap}}'
