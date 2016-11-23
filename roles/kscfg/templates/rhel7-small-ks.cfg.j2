@@ -58,6 +58,9 @@ do
     IF_NAME=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
     /usr/bin/sed -i "\$a\\NAME=\"${IF_NAME}\"\nIPV4_FAILURE_FATAL=\"yes\"" ${IF_FILE}
 done
+{% if item.kscfg_uefi_firmware %}
+sed -i 's/defaults,uid=0,gid=0,//' /etc/fstab
+{% endif %}
 
 %end
 
