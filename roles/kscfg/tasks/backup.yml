@@ -17,19 +17,19 @@
     set_fact: dest_file="{{ backup_item.diff[0].after_header|regex_replace('\ \(.*$', '') }}"
     when: backup_item.dest is undefined
 
-  - name: backup before setting
+  - name: "{{ backup_file|default('no') }} backup before setting"
     fetch: >
       src="{{ backup_file }}"
       dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: backup_file is defined
 
-  - name: backup after setting
+  - name: "{{ dest_file|default('no') }} backup after setting"
     fetch: >
       src="{{ dest_file }}"
       dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: dest_file is defined
 
-  - name: delete setting backup
+  - name: "{{ backup_file|default('no') }} delete setting backup"
     file: path="{{ backup_file }}" state=absent
     when: backup_file is defined
 
