@@ -74,13 +74,14 @@ poweroff
 %post
 for IF_FILE in $(/usr/bin/grep -L "^NAME=" /etc/sysconfig/network-scripts/ifcfg-*)
 do
-    IF_NAME=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
-    IPV4_ADDRESSES=$(nmcli -t --fields ipv4.addresses con show ${IF_FILE} | sed 's/.*://')
-    IPV4_GATEWAY=$(nmcli -t --fields ipv4.gateway con show ${IF_FILE} | sed 's/.*://')
-    nmcli con del ${IF_FILE}
-    nmcli con add type ethernet con-name ${IF_FILE} ifname ${IF_FILE} ip4 ${IPV4_ADDRESSES} gw4 ${IPV4_GATEWAY}
-    nmcli con mod ${IF_FILE} ipv4.may-fail no
-    nmcli con mod ${IF_FILE} ipv6.method ignore
+    IF_DEV=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
+    IF_NAME=$(nmcli -t -f NAME con show | grep ${IF_FILE})
+    IPV4_ADDRESSES=$(nmcli -t --fields ipv4.addresses con show ${IF_NAME} | sed 's/.*://')
+    IPV4_GATEWAY=$(nmcli -t --fields ipv4.gateway con show ${IF_NAME} | sed 's/.*://')
+    nmcli con del ${IF_NAME}
+    nmcli con add type ethernet con-name ${IF_DEV} ifname ${IF_DEV} ip4 ${IPV4_ADDRESSES} gw4 ${IPV4_GATEWAY}
+    nmcli con mod ${IF_DEV} ipv4.may-fail no
+    nmcli con mod ${IF_DEV} ipv6.method ignore
 done
 {% if item.kscfg_uefi_firmware %}
 sed -i 's/defaults,uid=0,gid=0,//' /etc/fstab
