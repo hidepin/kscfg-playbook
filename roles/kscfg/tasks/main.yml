@@ -14,6 +14,14 @@
     register: is_httpd_setting
     notify: httpd restart
 
+  - name: (rhel6 family) enable httpd services
+    service: name=httpd.service enabled=yes state=started
+    when: ansible_distribution_major_version == '6'
+
+  - name: (rhel7 family) enable httpd services
+    systemd: name=httpd.service enabled=yes state=started
+    when: ansible_distribution_major_version == '7'
+
   always:
   - name: backup settings
     include: backup.yml
