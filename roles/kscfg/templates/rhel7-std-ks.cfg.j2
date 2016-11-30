@@ -72,7 +72,7 @@ poweroff
 %end
 
 %post
-for IF_FILE in $(/usr/bin/grep -L "^NAME=" /etc/sysconfig/network-scripts/ifcfg-*)
+for IF_FILE in $(/usr/bin/grep -l "kickstart" /etc/sysconfig/network-scripts/ifcfg-*)
 do
     IF_NAME=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
     /usr/bin/sed -i "\$a\\NAME=\"${IF_NAME}\"\nIPV4_FAILURE_FATAL=\"yes\"" ${IF_FILE}
