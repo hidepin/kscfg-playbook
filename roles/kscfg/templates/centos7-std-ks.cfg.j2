@@ -70,6 +70,7 @@ poweroff
 for IF_FILE in $(/usr/bin/grep -l "kickstart" /etc/sysconfig/network-scripts/ifcfg-*)
 do
     IF_NAME=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
+    /usr/bin/sed -i "/^NAME=/d" ${IF_FILE}
     /usr/bin/sed -i "\$a\\NAME=\"${IF_NAME}\"\nIPV4_FAILURE_FATAL=\"yes\"" ${IF_FILE}
 done
 if [ -f /etc/libvirt/qemu/networks/autostart/default.xml ]; then
