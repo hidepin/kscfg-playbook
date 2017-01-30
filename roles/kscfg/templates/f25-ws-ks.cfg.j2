@@ -3,9 +3,10 @@
 auth --enableshadow --passalgo=sha512
 # License agreement
 eula --agreed
+# Use network installation
+url --url={{item.kscfg_insturl}}
 # Use graphical install
 graphical
-liveimg --url={{item.kscfg_liveimg}}
 # Run the Setup Agent on first boot
 firstboot --disable
 ignoredisk --only-use={{item.kscfg_hdddev}}
@@ -46,6 +47,7 @@ poweroff
 
 %packages
 chrony
+@^workstation-product-environment
 {% for pkg in item.kscfg_pkg_addlist %}
 {{pkg}}
 {% endfor %}

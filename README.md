@@ -15,7 +15,7 @@ kscfg-playbook
   - rhel6/centos6の場合
     - 「vmlinuz initrd=initrd.img」の後ろに、「ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してEnter
 
-  - rhel7/centos7の場合
+  - rhel7/centos7/fedora25の場合
     - 「linuxefi /images/pxeboot/vmlinuz (略) quiet」の後ろに、「inst.ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してCtrl+x
 
 - BIOS
@@ -23,7 +23,7 @@ kscfg-playbook
   - rhel6/centos6の場合
     - 「vmlinuz initrd=initrd.img」の後ろに、「ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してEnter
 
-  - rhel7/centos7の場合
+  - rhel7/centos7/fedora25の場合
     - 「vmlinuz initrd=initrd.img (略) quiet」の後ろに、「inst.ks=http://(webサーバ)/kscfg/(ksファイル名) ip=(ipアドレス) netmask=(ネットマスク)」を追加してEnter
     - メディアチェックを省略した場合は、「rd.live.check」を削除する
 
@@ -33,6 +33,7 @@ kscfg-playbook
 - RHEL7
 - CentOS6
 - CentOS7
+- Fedora Workstation25 (Optional: リモートリソースが準備されていることが条件)
 
 # 設定
 
@@ -48,7 +49,8 @@ kscfg-playbook
         - centos6-small-ks.cfg.j2 : centos6を最小構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース)
         - centos6-std-ks.cfg.j2   : centos6を一般的な構成で構築する場合のテンプレートファイル(CentOS6.8のanacondaベース) (検討中)
         - centos7-small-ks.cfg.j2 : centos7を最小構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
-        - centos7-std-ks.cfg.j2   : centosを一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
+        - centos7-std-ks.cfg.j2   : centos7を一般的な構成で構築する場合のテンプレートファイル(CentOS7.2のanacondaベース)
+        - f25-ws-ks.cfg.j2        : Fedora Workstation25を一般的な構成で構築する場合のテンプレートファイル(Fedora25のanacondaベース)
       - kscfg_hostname      : kickstartで作成するマシンのホスト名(ドメイン含む)
       - kscfg_keymap        : kickstartで作成するマシンのkeymap
       - kscfg_hdddev        : kickstartで作成するマシンのHDDのデバイス名
@@ -62,6 +64,7 @@ kscfg-playbook
       - kscfg_uefi_firmware : kickstartで作成するマシンのfirmwareがuefiの場合Trueとする (Falseにした場合BIOSモードとして設定する)
       - kscfg_kdump_part    : Trueの場合、memsizeの1.1倍の領域をkdump用に作成する (Falseにした場合kdump領域を確保しない)
       - kscfg_pkg_addlist   : 追加したいパッケージを追加する
+      - kscfg_insturl       : (Optionl: Fedora25 Only) インストールリソースのurlを設定する
 
 # 仕様
 
@@ -117,6 +120,8 @@ kscfg-playbook
       - パフォーマンスツール        : 追加チェック
       - 開発ツール                 : 追加チェック
       - その他: tmux
+  - f25-ws-ks.cfg.j2のパッケージ
+    - Fedora Workstation
 
 # 依存関係
 

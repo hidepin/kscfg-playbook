@@ -144,7 +144,7 @@ kscfg:
   - {
       kscfg_template:   'f25-ws-ks.cfg.j2',
       kscfg_hostname:   'f25-ws.localdomain',
-      kscfg_liveimg:    'http://172.16.111.1/squashfs.img'
+      kscfg_insturl:    'http://172.16.111.1/Fedora',
       kscfg_keymap:     'jp',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'link',
