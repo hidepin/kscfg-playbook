@@ -4,6 +4,7 @@ kscfg:
   - {
       kscfg_template:   'rhel6-small-ks.cfg.j2',
       kscfg_hostname:   'rhel6-small.localdomain',
+      kscfg_liveimg:    'http://172.16.111.1/squashfs.img'
       kscfg_keymap:     'jp106',
       kscfg_hdddev:     'sda',
       kscfg_netdev:     'eth0',
@@ -139,5 +140,23 @@ kscfg:
           '@web-server',
           'java-1.8.0-openjdk-devel',
           'tmux',
+        ]
+    }
+  - {
+      kscfg_template:   'f25-ws-ks.cfg.j2',
+      kscfg_hostname:   'f25-ws.localdomain',
+      kscfg_keymap:     'jp',
+      kscfg_hdddev:     'sda',
+      kscfg_netdev:     'link',
+      kscfg_gateway:    '172.16.111.1',
+      kscfg_ip:         '172.16.111.10',
+      kscfg_nameserver: '172.16.111.1',
+      kscfg_netmask:    '255.255.255.0',
+      kscfg_rootpw:     '$6$tvv0KYkMXjzYLzIw$PCuwZSywJMPTlmx2dpuM0uWjb3.pumWeYNZ2w9wg2jN0qo4mOev/XlCErcOazFvXhazapr4G48lX8sBJUfpsq1',
+      kscfg_memsize:    '4096',
+      kscfg_uefi_firmware: True,
+      kscfg_kdump_part: True,
+      kscfg_pkg_addlist:
+        [
         ]
     }
