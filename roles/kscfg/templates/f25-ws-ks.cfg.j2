@@ -54,6 +54,27 @@ chrony
 
 %end
 
+%post
+for IF_FILE in $(/usr/bin/grep -l "kickstart" /etc/sysconfig/network-scripts/ifcfg-*)
+do
+    IF_NAME=$(/usr/bin/basename ${IF_FILE} | sed 's/ifcfg-//')
+    /usr/bin/sed -i "/^NAME=/d;\$a\\NAME=\"${IF_NAME}\"\nIPV4_FAILURE_FATAL=\"yes\"" ${IF_FILE}
+done
+if [ -f /etc/libvirt/qemu/networks/autostart/default.xml ]; then
+    rm -f /etc/libvirt/qemu/networks/autostart/default.xml
+fi
+{% if item.kscfg_uefi_firmware %}
+sed -i 's/defaults,uid=0,gid=0,//' /etc/fstab
+{% endif %}
+sed -i 's/USEFPRINTD=no/USEFPRINTD=yes/' /etc/sysconfig/authconfig
+sed -i '/pam_env.so/a\auth        sufficient    pam_fprintd.so' /etc/pam.d/system-auth-ac
+# Initial Setup Dsiable
+###sed -i '/\[daemon\]/a\InitialSetupEnable=false' /etc/gdm/custom.conf
+# Gnome Setup Dsiable
+###sed -i '$a\X-GNOME-Autostart-enabled=false' /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
+
+%end
+
 %addon com_redhat_kdump --disable --reserve-mb='128'
 
 %end
