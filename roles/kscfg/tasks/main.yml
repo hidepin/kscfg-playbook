@@ -2,24 +2,32 @@
 # file: roles/kscfg/main.yml
 - block:
   - name: httpd packages install
-    yum: name=httpd state=present
+    package:
+      name: httpd
+      state: present
 
   - name: setting httpd ServerName
-    lineinfile: >
-      name=/etc/httpd/conf/httpd.conf
-      regexp="^ServerName "
-      insertafter="^#ServerName "
-      line="ServerName {{ ansible_fqdn }}"
-      backup=yes
+    lineinfile:
+      name: /etc/httpd/conf/httpd.conf
+      regexp: "^ServerName "
+      insertafter: "^#ServerName "
+      line: "ServerName {{ ansible_fqdn }}"
+      backup: yes
     register: is_httpd_setting
     notify: httpd restart
 
   - name: (rhel6 family) enable httpd services
-    service: name=httpd.service enabled=yes state=started
+    service:
+      name: httpd.service
+      enabled: yes
+      state: started
     when: ansible_distribution_major_version == '6'
 
   - name: (rhel7 family) enable httpd services
-    systemd: name=httpd.service enabled=yes state=started
+    systemd:
+      name: httpd.service
+      enabled: yes
+      state: started
     when: ansible_distribution_major_version == '7'
 
   always:
@@ -33,17 +41,22 @@
   when: kscfg_httpd_enable
 
 - name: create kscfg dir
-  file: path="{{ kscfg_path }}" state=directory owner=root group=root mode=0755
+  file:
+    path: "{{ kscfg_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - block:
   - name: kscfg deploy
-    template: >
-      src="{{ item.kscfg_template }}"
-      dest="{{ kscfg_path }}/{{ item.kscfg_hostname|regex_replace('\..*$', '') }}.cfg"
-      owner=root
-      group=root
-      mode=0644
-      backup=yes
+    template:
+      src: "{{ item.kscfg_template }}"
+      dest: "{{ kscfg_path }}/{{ item.kscfg_hostname|regex_replace('\\..*$', '') }}.cfg"
+      owner: root
+      group: root
+      mode: 0644
+      backup: yes
     register: is_kscfg_setting
     with_items: "{{ kscfg }}"
 

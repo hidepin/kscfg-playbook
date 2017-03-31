@@ -18,15 +18,15 @@
     when: backup_item.dest is undefined
 
   - name: "{{ backup_file|default('no') }} backup before setting"
-    fetch: >
-      src="{{ backup_file }}"
-      dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
+    fetch:
+      src: "{{ backup_file }}"
+      dest: "backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: backup_file is defined
 
   - name: "{{ dest_file|default('no') }} backup after setting"
-    fetch: >
-      src="{{ dest_file }}"
-      dest="backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
+    fetch:
+      src: "{{ dest_file }}"
+      dest: "backup/{{ ansible_date_time.date }}-{{ ansible_date_time.time|regex_replace(':', '') }}"
     when: dest_file is defined
 
   - name: "{{ backup_file|default('no') }} delete setting backup"
