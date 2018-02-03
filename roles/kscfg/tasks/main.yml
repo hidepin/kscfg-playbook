@@ -32,7 +32,7 @@
 
   always:
   - name: backup settings
-    include: backup.yml
+    include_tasks: backup.yml
     with_flattened:
       - "{{ is_httpd_setting|default() }}"
     loop_control:
@@ -62,7 +62,7 @@
 
   always:
   - name: backup settings
-    include: backup.yml
+    include_tasks: backup.yml
     with_flattened:
       - "{{ is_kscfg_setting.results|default() }}"
     loop_control:
